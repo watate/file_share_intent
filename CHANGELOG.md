@@ -1,3 +1,8 @@
+## 1.8.2
+
+* Updated Gradle version for Android build (by @ravijadav812)
+* Fixed ios swift compile errors (by @ltOgt)
+
 ## 1.8.1
 
 * Fixed sharing not working on iOS 18
