@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import '../receive_sharing_intent.dart';
+import '../listen_sharing_intent.dart';
 
 class ReceiveSharingIntentMobile extends ReceiveSharingIntent {
   @visibleForTesting

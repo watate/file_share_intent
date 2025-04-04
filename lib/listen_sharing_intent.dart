@@ -1,11 +1,11 @@
-library receive_sharing_intent;
+library listen_sharing_intent;
 
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'src/receive_sharing_intent_mobile.dart';
+import 'src/listen_sharing_intent_mobile.dart';
 
 part 'src/data/shared_media_file.dart';
 

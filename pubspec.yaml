@@ -1,6 +1,6 @@
-name: receive_sharing_intent
+name: listen_sharing_intent
 description: A flutter plugin that enables flutter apps to receive sharing photos, text or url from other apps.
-version: 1.8.2
+version: 1.9.0
 homepage: https://github.com/Zverik/receive_sharing_intent
 
 environment:

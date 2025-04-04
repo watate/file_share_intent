@@ -1,21 +1,19 @@
-# receive_sharing_intent
-[![pub package](https://img.shields.io/pub/v/receive_sharing_intent.svg)](https://pub.dev/packages/receive_sharing_intent)
+# listen_sharing_intent
+[![pub package](https://img.shields.io/pub/v/listen_sharing_intent.svg)](https://pub.dev/packages/listen_sharing_intent)
 
 A Flutter plugin that enables flutter apps to receive sharing photos, videos, text, urls or any other file types from another app.
 
 Also, supports iOS Share extension and launching the host app automatically.
 Check the provided [example](./example/lib/main.dart) for more info.
 
-
-
 |             | Android                 | iOS               |
 |-------------|-------------------------|-------------------|
 | **Support** | SDK 19+ (Kotlin 1.9.22) | 12.0+ (Swift 5.0) |
 
-
-
 ![Alt Text](./example/demo.gif)
 
+This is a fork of the original [receive_sharing_intent](https://pub.dev/packages/listen_sharing_intent) plugin with many
+pull requests merged in.
 
 # Usage
 

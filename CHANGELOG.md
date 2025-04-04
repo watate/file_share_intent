@@ -1,4 +1,4 @@
-## 1.8.2
+## 1.9.0
 
 * Updated Gradle version for Android build (by @ravijadav812)
 * Fixed ios swift compile errors (by @ltOgt)
