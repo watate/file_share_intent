@@ -2,6 +2,7 @@
 
 * Updated Gradle version for Android build (by @ravijadav812)
 * Fixed ios swift compile errors (by @ltOgt)
+* File path errors are logged instead of crashing (by @kreativityapps)
 
 ## 1.8.1
 
