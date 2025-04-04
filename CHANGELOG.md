@@ -3,6 +3,9 @@
 * Updated Gradle version for Android build (by @ravijadav812)
 * Fixed ios swift compile errors (by @ltOgt)
 * File path errors are logged instead of crashing (by @kreativityapps)
+* Handle `mailto` links (by @dab246)
+* In some Android apps (e.g. Strava), the text may be included in `EXTRA_TEXT`
+  when `ACTION_SEND_MULTIPLE` is used (by @hidea)
 
 ## 1.8.1
 
