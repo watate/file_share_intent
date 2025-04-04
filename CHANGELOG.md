@@ -6,6 +6,7 @@
 * Handle `mailto` links (by @dab246)
 * In some Android apps (e.g. Strava), the text may be included in `EXTRA_TEXT`
   when `ACTION_SEND_MULTIPLE` is used (by @hidea)
+* Added support for PDF files on iOS (by @Gibbo97)
 
 ## 1.8.1
 
