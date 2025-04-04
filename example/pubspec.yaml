@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  receive_sharing_intent:
+  listen_sharing_intent:
     path: ../
 
 dev_dependencies:
