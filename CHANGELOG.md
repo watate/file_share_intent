@@ -1,3 +1,7 @@
+## 1.9.1
+
+* Fix links in README and in the example. No code changes.
+
 ## 1.9.0
 
 * Updated Gradle version for Android build (by @ravijadav812)
