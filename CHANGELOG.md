@@ -1,3 +1,7 @@
+## 1.9.2
+
+* Rename iOS classes and pod (by @basit-h, thanks @danemadsen)
+
 ## 1.9.1
 
 * Fix links in README and in the example. No code changes.
