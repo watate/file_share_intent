@@ -122,6 +122,7 @@ Add the following filters to your [android/app/src/main/AndroidManifest.xml](./e
 
 - Using Xcode, go to File/New/Target and Choose "Share Extension".
 - Give it a name, i.e., "Share Extension".
+- Choose project "Runner", embed in "Runner".
 
 Make sure the deployment target for Runner.app and the share extension is the same.
 
