@@ -1,0 +1,6 @@
+framework module file_share_intent {
+    umbrella header "file_share_intent.h"
+    
+    export *
+    module * { export * }
+}

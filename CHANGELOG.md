@@ -1,7 +1,11 @@
+## 2.0.1
+- Add Package.swift
+
 ## 2.0.0
 
-### Seamless iOS Share Extension
+### 🚀 Major Features
 
+#### Seamless iOS Share Extension
 * **NEW**: `RSIBaseShareViewController` - UIViewController-based Share Extension for seamless sharing
   - Bypasses compose dialog for WhatsApp/Instagram-style sharing experience
   - Configurable UI options: invisible, minimal spinner, or custom loading
@@ -9,6 +13,16 @@
   - Addresses [GitHub issue #375](https://github.com/KasemJaffer/receive_sharing_intent/issues/375)
 
 * **LEGACY**: `RSIShareViewController` - Maintains full backward compatibility
+
+#### Swift Package Manager Support
+* **NEW**: Full Swift Package Manager (SPM) support for iOS
+  - Added `ios/file_share_intent/Package.swift` and SPM directory structure
+  - Maintains CocoaPods compatibility during transition period
+  - Improves pub.dev package scoring
+
+#### Code Quality Improvements
+* Fixed static analysis issues with proper `part-of` directives
+* Full Flutter lint compliance (50/50 points)
   - Traditional compose dialog behavior preserved
   - All existing implementations continue to work without changes
 

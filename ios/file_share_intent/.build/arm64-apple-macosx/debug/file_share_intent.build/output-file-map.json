@@ -1,0 +1,17 @@
+{
+  "": {
+    "swift-dependencies": "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/master.swiftdeps"
+  },
+  "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/Sources/file_share_intent/RSIShareViewController.swift": {
+    "dependencies": "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/RSIShareViewController.d",
+    "object": "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/RSIShareViewController.swift.o",
+    "swiftmodule": "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/RSIShareViewController~partial.swiftmodule",
+    "swift-dependencies": "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/RSIShareViewController.swiftdeps"
+  },
+  "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/Sources/file_share_intent/SwiftListenSharingIntentPlugin.swift": {
+    "dependencies": "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/SwiftListenSharingIntentPlugin.d",
+    "object": "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/SwiftListenSharingIntentPlugin.swift.o",
+    "swiftmodule": "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/SwiftListenSharingIntentPlugin~partial.swiftmodule",
+    "swift-dependencies": "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/SwiftListenSharingIntentPlugin.swiftdeps"
+  }
+}

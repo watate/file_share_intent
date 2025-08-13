@@ -1,0 +1,258 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.file_share_intent-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/sources",
+      "importPath" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/Sources/file_share_intent/RSIShareViewController.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/Sources/file_share_intent/SwiftListenSharingIntentPlugin.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent_objc.build/ListenSharingIntentPlugin.m.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "file_share_intent",
+      "moduleOutputPath" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/Modules/file_share_intent.swiftmodule",
+      "objects" : [
+        "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/RSIShareViewController.swift.o",
+        "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/SwiftListenSharingIntentPlugin.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx10.15",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j12",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-Xcc",
+        "-fmodule-map-file=/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/Sources/file_share_intent_objc/include/module.modulemap",
+        "-Xcc",
+        "-I",
+        "-Xcc",
+        "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/Sources/file_share_intent_objc/include",
+        "-module-cache-path",
+        "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/file_share_intent-Swift.h",
+        "-swift-version",
+        "5",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "file_share_intent"
+      ],
+      "outputFileMapPath" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/RSIShareViewController.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/SwiftListenSharingIntentPlugin.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/Modules/file_share_intent.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/Sources/file_share_intent/RSIShareViewController.swift",
+        "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/Sources/file_share_intent/SwiftListenSharingIntentPlugin.swift"
+      ],
+      "tempsPath" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "file_share_intent" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "file_share_intent",
+      "-package-name",
+      "file_share_intent",
+      "-incremental",
+      "-c",
+      "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/Sources/file_share_intent/RSIShareViewController.swift",
+      "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/Sources/file_share_intent/SwiftListenSharingIntentPlugin.swift",
+      "-I",
+      "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx10.15",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j12",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-Xcc",
+      "-fmodule-map-file=/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/Sources/file_share_intent_objc/include/module.modulemap",
+      "-Xcc",
+      "-I",
+      "-Xcc",
+      "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/Sources/file_share_intent_objc/include",
+      "-module-cache-path",
+      "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/file_share_intent-Swift.h",
+      "-swift-version",
+      "5",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "file_share_intent",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "file_share_intent" : [
+      "file_share_intent_objc"
+    ],
+    "file_share_intent_objc" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "enableAllTraits" : false
+  },
+  "writeCommands" : {
+    "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/Sources/file_share_intent/RSIShareViewController.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/Sources/file_share_intent/SwiftListenSharingIntentPlugin.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/file_share_intent.build/sources"
+    },
+    "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/waltertay/Documents/GitHub/file_share_intent/ios/file_share_intent/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}
