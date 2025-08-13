@@ -2,7 +2,7 @@
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
 #
 Pod::Spec.new do |s|
-  s.name             = 'listen_sharing_intent'
+  s.name             = 'file_share_intent'
   s.version          = '1.9.2'
   s.summary          = 'A flutter plugin that enables flutter apps to receive sharing photos from other apps.'
   s.description      = <<-DESC

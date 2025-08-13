@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:listen_sharing_intent/listen_sharing_intent.dart';
+import 'package:file_share_intent/file_share_intent.dart';
 
 void main() => runApp(MyApp());
 

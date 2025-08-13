@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:file_share_intent/file_share_intent.dart';
 
 import 'package:receive_sharing_intent_example/main.dart';
 

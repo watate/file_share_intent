@@ -1,8 +1,8 @@
 import UIKit
 import Flutter
-import receive_sharing_intent
+import file_share_intent
 
-@UIApplicationMain
+@main
 @objc class AppDelegate: FlutterAppDelegate {
     override func application(
         _ application: UIApplication,
@@ -14,7 +14,7 @@ import receive_sharing_intent
     
     // If the application is using multiple libraries, which needs to implement this function here in AppDelegate, you should check if the url is made from SwiftReceiveSharingIntentPlugin (if so, return the sharingIntent response) or call the handler of specific librabry
     override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        let sharingIntent = SwiftReceiveSharingIntentPlugin.instance
+        let sharingIntent = SwiftListenSharingIntentPlugin.instance
         if sharingIntent.hasMatchingSchemePrefix(url: url) {
             return sharingIntent.application(app, open: url, options: options)
         }

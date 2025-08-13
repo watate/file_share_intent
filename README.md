@@ -1,13 +1,16 @@
-# listen_sharing_intent
-[![pub package](https://img.shields.io/pub/v/listen_sharing_intent.svg)](https://pub.dev/packages/listen_sharing_intent)
+# file_share_intent
+[![pub package](https://img.shields.io/pub/v/file_share_intent.svg)](https://pub.dev/packages/file_share_intent)
 
 A Flutter plugin that enables flutter apps to receive sharing photos, videos, text, urls or any other file types from another app.
 
 Also, supports iOS Share extension and launching the host app automatically.
 Check the provided [example](./example/lib/main.dart) for more info.
 
-This is a fork of the original [receive_sharing_intent](https://pub.dev/packages/receive_sharing_intent) plugin with many
-pull requests merged in.
+This is a fork of the original [receive_sharing_intent](https://pub.dev/packages/receive_sharing_intent) and [listen_sharing_intent](https://github.com/Zverik/receive_sharing_intent) plugin.
+
+Main differences:
+- Pull requests merged
+- Extend UIViewController instead of SLComposeServiceViewController to enable WhatsApp-style seamless sharing instead of showing a text field popup
 
 |             | Android                 | iOS               |
 |-------------|-------------------------|-------------------|
@@ -17,11 +20,11 @@ pull requests merged in.
 
 # Usage
 
-To use this plugin, add `listen_sharing_intent` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/). For example:
+To use this plugin, add `file_share_intent` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/). For example:
 
 ```yaml
 dependencies:
-  listen_sharing_intent: ^latest
+  file_share_intent: ^latest
 ```
 
 ## Android
@@ -239,14 +242,47 @@ end
 #### 7. Go to Build Phases of your Runner target and move `Embed Foundation Extension` to the top of `Thin Binary`. 
 
 
-#### 8. Make your `ShareViewController`  [ios/Share Extension/ShareViewController.swift](./example/ios/Share%20Extension/ShareViewController.swift) inherit from `RSIShareViewController`:
+#### 8. Choose Your Share Extension Implementation
 
+You have two options for implementing your Share Extension:
+
+**Option A: Seamless Sharing (NEW - No Compose Dialog)**
+
+For WhatsApp-style seamless sharing without a compose dialog:
 
 ```swift
-// If you get no such module 'listen_sharing_intent' error. 
+// If you get no such module 'file_share_intent' error. 
 // Go to Build Phases of your Runner target and
 // move `Embed Foundation Extension` to the top of `Thin Binary`. 
-import listen_sharing_intent
+import file_share_intent
+
+class ShareViewController: RSIBaseShareViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Configure seamless sharing
+        showUI = true          // Show minimal loading indicator (optional)
+        processingMessage = "Sharing..."
+        autoRedirect = true    // Automatically redirect after processing
+    }
+    
+    // Optional: Custom behavior after attachments are processed
+    override func onAttachmentsProcessed() {
+        // Add custom logic here if needed
+        super.onAttachmentsProcessed()
+    }
+}
+```
+
+**Option B: Traditional Compose Dialog (LEGACY)**
+
+For traditional sharing with a compose dialog where users can add messages:
+
+```swift
+// If you get no such module 'file_share_intent' error. 
+// Go to Build Phases of your Runner target and
+// move `Embed Foundation Extension` to the top of `Thin Binary`. 
+import file_share_intent
 
 class ShareViewController: RSIShareViewController {
       
@@ -256,12 +292,21 @@ class ShareViewController: RSIShareViewController {
         return false
     }
     
+    // Optional: Customize the Post button text
+    override func presentationAnimationDidFinish() {
+        super.presentationAnimationDidFinish()
+        navigationController?.navigationBar.topItem?.rightBarButtonItem?.title = "Send"
+    }
 }
 ```
 
+**Which Option to Choose?**
+- Use **Option A** (`RSIBaseShareViewController`) for seamless sharing like WhatsApp, Instagram, etc.
+- Use **Option B** (`RSIShareViewController`) for traditional sharing with user message input like Mail, Messages, etc.
+
 #### Compiling issues and their fixes
 
-* Error: No such module 'listen_sharing_intent'
+* Error: No such module 'file_share_intent'
   * Fix: Go to Build Phases of your Runner target and move `Embed Foundation Extension` to the top of `Thin Binary`.
   
 * Error: App does not build after adding Share Extension?
@@ -282,7 +327,7 @@ class ShareViewController: RSIShareViewController {
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:listen_sharing_intent/listen_sharing_intent.dart';
+import 'package:file_share_intent/file_share_intent.dart';
 
 void main() => runApp(MyApp());
 

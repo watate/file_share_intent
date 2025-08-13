@@ -1,3 +1,40 @@
+## 2.0.0
+
+### Seamless iOS Share Extension
+
+* **NEW**: `RSIBaseShareViewController` - UIViewController-based Share Extension for seamless sharing
+  - Bypasses compose dialog for WhatsApp/Instagram-style sharing experience
+  - Configurable UI options: invisible, minimal spinner, or custom loading
+  - Immediate automatic redirection after processing
+  - Addresses [GitHub issue #375](https://github.com/KasemJaffer/receive_sharing_intent/issues/375)
+
+* **LEGACY**: `RSIShareViewController` - Maintains full backward compatibility
+  - Traditional compose dialog behavior preserved
+  - All existing implementations continue to work without changes
+
+### New Configuration Options
+
+```swift
+class SeamlessShareViewController: RSIBaseShareViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        showUI = true                    // Show loading indicator
+        processingMessage = "Sharing..."  // Custom message
+        autoRedirect = true              // Auto-redirect after processing
+    }
+}
+```
+
+### Breaking Changes
+* None - Full backward compatibility maintained
+* Package renamed from `listen_sharing_intent` to `file_share_intent`
+* Import statements updated: `import file_share_intent`
+
+### Implementation Options
+* **Option A**: `RSIBaseShareViewController` - Seamless sharing (no compose dialog)
+* **Option B**: `RSIShareViewController` - Traditional compose dialog (legacy)
+
 ## 1.9.2
 
 * Rename iOS classes and pod (by @basit-h, thanks @danemadsen)

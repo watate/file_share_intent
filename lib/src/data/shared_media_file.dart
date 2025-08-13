@@ -1,4 +1,4 @@
-part of listen_sharing_intent;
+part of file_share_intent;
 
 class SharedMediaFile {
   /// Shared file path, url or the text

@@ -2,8 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:listen_sharing_intent/listen_sharing_intent.dart';
-import 'package:listen_sharing_intent/src/listen_sharing_intent_mobile.dart';
+import 'package:file_share_intent/file_share_intent.dart';
+import 'package:file_share_intent/src/file_share_intent_mobile.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

@@ -11,104 +11,206 @@ import Photos
 import Social
 import UIKit
 
+// MARK: - Base Share View Controller (UIViewController-based)
+
 @available(swift, introduced: 5.0)
-open class RSIShareViewController: SLComposeServiceViewController {
+open class RSIBaseShareViewController: UIViewController {
     var hostAppBundleIdentifier = ""
     var appGroupId = ""
     var sharedMedia: [SharedMediaFile] = []
-
+    
+    // Configuration options
+    open var showUI: Bool = false
+    open var processingMessage: String = "Processing..."
+    open var autoRedirect: Bool = true
+    
+    private var loadingView: UIView?
+    private var activityIndicator: UIActivityIndicatorView?
+    private var messageLabel: UILabel?
+    
     /// Override this method to return false if you don't want to redirect to host app automatically
     /// Default is true
     open func shouldAutoRedirect() -> Bool {
-        return true
+        return autoRedirect
     }
-
-    open override func isContentValid() -> Bool {
-        return true
-    }
-
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // load group and app id from build info
         loadIds()
+        
+        if showUI {
+            setupUI()
+        }
+        
+        // Process attachments immediately
+        processAttachments()
     }
-
-    // Redirect to host app when user click on Post
-    open override func didSelectPost() {
-        saveAndRedirect(message: contentText)
+    
+    private func setupUI() {
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            view.backgroundColor = UIColor.white
+        }
+        
+        // Create loading view
+        loadingView = UIView()
+        loadingView?.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 13.0, *) {
+            loadingView?.backgroundColor = UIColor.systemBackground
+        } else {
+            loadingView?.backgroundColor = UIColor.white
+        }
+        view.addSubview(loadingView!)
+        
+        // Activity indicator
+        if #available(iOS 13.0, *) {
+            activityIndicator = UIActivityIndicatorView(style: .large)
+        } else {
+            activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+            activityIndicator?.color = UIColor.darkGray
+        }
+        activityIndicator?.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator?.startAnimating()
+        loadingView?.addSubview(activityIndicator!)
+        
+        // Message label
+        messageLabel = UILabel()
+        messageLabel?.text = processingMessage
+        messageLabel?.textAlignment = .center
+        messageLabel?.font = UIFont.systemFont(ofSize: 16)
+        if #available(iOS 13.0, *) {
+            messageLabel?.textColor = UIColor.label
+        } else {
+            messageLabel?.textColor = UIColor.darkGray
+        }
+        messageLabel?.translatesAutoresizingMaskIntoConstraints = false
+        loadingView?.addSubview(messageLabel!)
+        
+        // Layout constraints
+        NSLayoutConstraint.activate([
+            loadingView!.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingView!.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingView!.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            
+            activityIndicator!.centerXAnchor.constraint(equalTo: loadingView!.centerXAnchor),
+            activityIndicator!.topAnchor.constraint(equalTo: loadingView!.topAnchor, constant: 20),
+            
+            messageLabel!.centerXAnchor.constraint(equalTo: loadingView!.centerXAnchor),
+            messageLabel!.topAnchor.constraint(equalTo: activityIndicator!.bottomAnchor, constant: 16),
+            messageLabel!.leadingAnchor.constraint(equalTo: loadingView!.leadingAnchor, constant: 16),
+            messageLabel!.trailingAnchor.constraint(equalTo: loadingView!.trailingAnchor, constant: -16),
+            messageLabel!.bottomAnchor.constraint(equalTo: loadingView!.bottomAnchor, constant: -20)
+        ])
     }
-
-    open override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        // This is called after the user selects Post. Do the upload of contentText and/or NSExtensionContext attachments.
-        if let content = extensionContext!.inputItems[0] as? NSExtensionItem {
-            if let contents = content.attachments {
-                for (index, attachment) in contents.enumerated() {
-                    if let nsItemProvider = attachment as? NSItemProvider {
-                        for type in SharedMediaType.allCases {
-                            if nsItemProvider.hasItemConformingToTypeIdentifier(
-                                type.toUTTypeIdentifier)
-                            {
-                                nsItemProvider.loadItem(
-                                    forTypeIdentifier: type.toUTTypeIdentifier, options: nil
-                                ) { [weak self] (data, error: Error?) in
-                                    guard let self = self else { return }
-
-                                    if let error = error {
-                                        self.dismissWithError()
-                                        return
+    
+    private func processAttachments() {
+        guard let extensionContext = extensionContext,
+              let inputItems = extensionContext.inputItems as? [NSExtensionItem],
+              let firstItem = inputItems.first,
+              let attachments = firstItem.attachments else {
+            if shouldAutoRedirect() {
+                saveAndRedirect()
+            } else {
+                completeRequest()
+            }
+            return
+        }
+        
+        let attachmentCount = attachments.count
+        var processedCount = 0
+        
+        for (index, attachment) in attachments.enumerated() {
+            if let nsItemProvider = attachment as? NSItemProvider {
+                var processed = false
+                
+                for type in SharedMediaType.allCases {
+                    if nsItemProvider.hasItemConformingToTypeIdentifier(type.toUTTypeIdentifier) {
+                        nsItemProvider.loadItem(forTypeIdentifier: type.toUTTypeIdentifier, options: nil) { [weak self] (data, error) in
+                            DispatchQueue.main.async {
+                                guard let self = self else { return }
+                                
+                                if let error = error {
+                                    self.handleError(error)
+                                    return
+                                }
+                                
+                                switch type {
+                                case .text:
+                                    if let text = data as? String {
+                                        self.handleMedia(forLiteral: text, type: type)
                                     }
-
-                                    switch type {
-                                    case .text:
-                                        if let text = data as? String {
-                                            self.handleMedia(
-                                                forLiteral: text,
-                                                type: type,
-                                                index: index,
-                                                content: content)
-                                        }
-                                    case .url:
-                                        if let url = data as? URL {
-                                            self.handleMedia(
-                                                forLiteral: url.absoluteString,
-                                                type: type,
-                                                index: index,
-                                                content: content)
-                                        }
-                                    default:
-                                        if let url = data as? URL {
-                                            self.handleMedia(
-                                                forFile: url,
-                                                type: type,
-                                                index: index,
-                                                content: content)
-                                        } else if let image = data as? UIImage {
-                                            self.handleMedia(
-                                                forUIImage: image,
-                                                type: type,
-                                                index: index,
-                                                content: content)
-                                        }
+                                case .url:
+                                    if let url = data as? URL {
+                                        self.handleMedia(forLiteral: url.absoluteString, type: type)
+                                    }
+                                default:
+                                    if let url = data as? URL {
+                                        self.handleMedia(forFile: url, type: type)
+                                    } else if let image = data as? UIImage {
+                                        self.handleMedia(forUIImage: image, type: type)
                                     }
                                 }
-                                break
+                                
+                                processedCount += 1
+                                if processedCount == attachmentCount {
+                                    self.onProcessingComplete()
+                                }
                             }
                         }
+                        processed = true
+                        break
                     }
+                }
+                
+                if !processed {
+                    processedCount += 1
+                    if processedCount == attachmentCount {
+                        onProcessingComplete()
+                    }
+                }
+            } else {
+                processedCount += 1
+                if processedCount == attachmentCount {
+                    onProcessingComplete()
                 }
             }
         }
     }
-
-    open override func configurationItems() -> [Any]! {
-        // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
-        return []
+    
+    private func onProcessingComplete() {
+        if shouldAutoRedirect() {
+            saveAndRedirect()
+        } else {
+            // Override this method in subclasses for custom behavior
+            onAttachmentsProcessed()
+        }
     }
-
-    private func loadIds() {
+    
+    /// Override this method to add custom behavior after attachments are processed
+    /// This is called when shouldAutoRedirect() returns false
+    open func onAttachmentsProcessed() {
+        completeRequest()
+    }
+    
+    private func handleError(_ error: Error) {
+        print("[ERROR] Error loading attachment: \(error)")
+        if shouldAutoRedirect() {
+            saveAndRedirect()
+        } else {
+            completeRequest()
+        }
+    }
+    
+    private func completeRequest() {
+        extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
+    }
+    
+    // MARK: - Shared Methods (used by both base classes)
+    
+    func loadIds() {
         // loading Share extension App Id
         let shareExtensionAppBundleIdentifier = Bundle.main.bundleIdentifier!
 
@@ -125,25 +227,16 @@ open class RSIShareViewController: SLComposeServiceViewController {
         appGroupId = customAppGroupId ?? defaultAppGroupId
     }
 
-    private func handleMedia(
-        forLiteral item: String, type: SharedMediaType, index: Int, content: NSExtensionItem
-    ) {
+    func handleMedia(forLiteral item: String, type: SharedMediaType) {
         sharedMedia.append(
             SharedMediaFile(
                 path: item,
                 mimeType: type == .text ? "text/plain" : nil,
                 type: type
             ))
-        if index == (content.attachments?.count ?? 0) - 1 {
-            if shouldAutoRedirect() {
-                saveAndRedirect()
-            }
-        }
     }
 
-    private func handleMedia(
-        forUIImage image: UIImage, type: SharedMediaType, index: Int, content: NSExtensionItem
-    ) {
+    func handleMedia(forUIImage image: UIImage, type: SharedMediaType) {
         let tempPath = FileManager.default.containerURL(
             forSecurityApplicationGroupIdentifier: appGroupId)!.appendingPathComponent(
                 "TempImage.png")
@@ -156,16 +249,9 @@ open class RSIShareViewController: SLComposeServiceViewController {
                     type: type
                 ))
         }
-        if index == (content.attachments?.count ?? 0) - 1 {
-            if shouldAutoRedirect() {
-                saveAndRedirect()
-            }
-        }
     }
 
-    private func handleMedia(
-        forFile url: URL, type: SharedMediaType, index: Int, content: NSExtensionItem
-    ) {
+    func handleMedia(forFile url: URL, type: SharedMediaType) {
         let fileName = getFileName(from: url, type: type)
         let newPath = FileManager.default.containerURL(
             forSecurityApplicationGroupIdentifier: appGroupId)!.appendingPathComponent(fileName)
@@ -195,16 +281,10 @@ open class RSIShareViewController: SLComposeServiceViewController {
                     ))
             }
         }
-
-        if index == (content.attachments?.count ?? 0) - 1 {
-            if shouldAutoRedirect() {
-                saveAndRedirect()
-            }
-        }
     }
 
     // Save shared media and redirect to host app
-    private func saveAndRedirect(message: String? = nil) {
+    func saveAndRedirect(message: String? = nil) {
         let userDefaults = UserDefaults(suiteName: appGroupId)
         userDefaults?.set(toData(data: sharedMedia), forKey: kUserDefaultsKey)
         userDefaults?.set(message, forKey: kUserDefaultsMessageKey)
@@ -236,20 +316,6 @@ open class RSIShareViewController: SLComposeServiceViewController {
             }
         }
 
-        extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
-    }
-
-    private func dismissWithError() {
-        print("[ERROR] Error loading data!")
-        let alert = UIAlertController(
-            title: "Error", message: "Error loading data", preferredStyle: .alert)
-
-        let action = UIAlertAction(title: "Error", style: .cancel) { _ in
-            self.dismiss(animated: true, completion: nil)
-        }
-
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
         extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }
 
@@ -341,6 +407,136 @@ open class RSIShareViewController: SLComposeServiceViewController {
         return encodedData!
     }
 }
+
+// MARK: - Legacy Share View Controller (SLComposeServiceViewController-based)
+
+@available(swift, introduced: 5.0)
+open class RSIShareViewController: SLComposeServiceViewController {
+    // Delegate to the base class for shared functionality
+    private lazy var baseController: RSIBaseShareViewController = {
+        let controller = RSIBaseShareViewController()
+        controller.autoRedirect = false // Let SLComposeServiceViewController handle the flow
+        return controller
+    }()
+    
+    var hostAppBundleIdentifier: String {
+        get { return baseController.hostAppBundleIdentifier }
+        set { baseController.hostAppBundleIdentifier = newValue }
+    }
+    
+    var appGroupId: String {
+        get { return baseController.appGroupId }
+        set { baseController.appGroupId = newValue }
+    }
+    
+    var sharedMedia: [SharedMediaFile] {
+        get { return baseController.sharedMedia }
+        set { baseController.sharedMedia = newValue }
+    }
+
+    /// Override this method to return false if you don't want to redirect to host app automatically
+    /// Default is true
+    open func shouldAutoRedirect() -> Bool {
+        return true
+    }
+
+    open override func isContentValid() -> Bool {
+        return true
+    }
+
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // The base controller will access extensionContext directly
+        
+        // load group and app id from build info - delegate to base controller
+        baseController.loadIds()
+    }
+
+    // Redirect to host app when user click on Post
+    open override func didSelectPost() {
+        baseController.saveAndRedirect(message: contentText)
+    }
+
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // Process attachments like original implementation
+        if let content = extensionContext!.inputItems[0] as? NSExtensionItem {
+            if let contents = content.attachments {
+                for (index, attachment) in contents.enumerated() {
+                    if let nsItemProvider = attachment as? NSItemProvider {
+                        for type in SharedMediaType.allCases {
+                            if nsItemProvider.hasItemConformingToTypeIdentifier(
+                                type.toUTTypeIdentifier)
+                            {
+                                nsItemProvider.loadItem(
+                                    forTypeIdentifier: type.toUTTypeIdentifier, options: nil
+                                ) { [weak self] (data, error: Error?) in
+                                    guard let self = self else { return }
+
+                                    if let error = error {
+                                        DispatchQueue.main.async {
+                                            self.dismissWithError()
+                                        }
+                                        return
+                                    }
+
+                                    DispatchQueue.main.async {
+                                        switch type {
+                                        case .text:
+                                            if let text = data as? String {
+                                                self.baseController.handleMedia(forLiteral: text, type: type)
+                                            }
+                                        case .url:
+                                            if let url = data as? URL {
+                                                self.baseController.handleMedia(forLiteral: url.absoluteString, type: type)
+                                            }
+                                        default:
+                                            if let url = data as? URL {
+                                                self.baseController.handleMedia(forFile: url, type: type)
+                                            } else if let image = data as? UIImage {
+                                                self.baseController.handleMedia(forUIImage: image, type: type)
+                                            }
+                                        }
+                                        
+                                        if index == (content.attachments?.count ?? 0) - 1 {
+                                            if self.shouldAutoRedirect() {
+                                                self.baseController.saveAndRedirect()
+                                            }
+                                        }
+                                    }
+                                }
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    open override func configurationItems() -> [Any]! {
+        // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
+        return []
+    }
+
+    private func dismissWithError() {
+        print("[ERROR] Error loading data!")
+        let alert = UIAlertController(
+            title: "Error", message: "Error loading data", preferredStyle: .alert)
+
+        let action = UIAlertAction(title: "Error", style: .cancel) { _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+        extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+    }
+}
+
+// MARK: - Extensions
 
 extension URL {
     public func mimeType() -> String {
