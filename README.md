@@ -236,7 +236,7 @@ end
 #### 6. Add Runner and Share Extension in the same group
 
 * Go to `Signing & Capabilities` tab and add App Groups capability in **BOTH** Targets: `Runner` and `Share Extension` 
-* Add a new container with the name of your choice. For example `group.MyContainer` in the example project its `group.com.kasem.ShareExtention`
+* Add a new container with the name of your choice. For example `group.MyContainer` in the example project its `group.com.walter.ShareExtention`
 * Add User-defined(`Build Settings -> +`) string `CUSTOM_GROUP_ID` in **BOTH** Targets: `Runner` and `Share Extension` and set value to group id created above. You can use different group ids depends on your flavor schemes
 
 #### 7. Go to Build Phases of your Runner target and move `Embed Foundation Extension` to the top of `Thin Binary`. 

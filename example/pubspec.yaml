@@ -1,5 +1,5 @@
-name: receive_sharing_intent_example
-description: Demonstrates how to use the receive_sharing_intent plugin.
+name: file_share_intent_example
+description: Demonstrates how to use the file_share_intent plugin.
 publish_to: 'none'
 
 version: 1.0.0+1

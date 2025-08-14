@@ -1,6 +1,6 @@
 //
 //  RSIShareViewController.swift
-//  receive_sharing_intent
+//  file_share_intent
 //
 //  Created by Kasem Mohamed on 2024-01-25.
 //
@@ -216,7 +216,7 @@ open class RSIBaseShareViewController: UIViewController {
 
         // extract host app bundle id from ShareExtension id
         // by default it's <hostAppBundleIdentifier>.<ShareExtension>
-        // for example: "com.kasem.sharing.Share-Extension" -> com.kasem.sharing
+        // for example: "com.walter.sharing.Share-Extension" -> com.walter.sharing
         let lastIndexOfPoint = shareExtensionAppBundleIdentifier.lastIndex(of: ".")
         hostAppBundleIdentifier = String(shareExtensionAppBundleIdentifier[..<lastIndexOfPoint!])
         let defaultAppGroupId = "group.\(hostAppBundleIdentifier)"

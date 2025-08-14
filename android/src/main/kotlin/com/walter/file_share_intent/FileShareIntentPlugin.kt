@@ -1,4 +1,4 @@
-package com.kasem.receive_sharing_intent
+package com.walter.file_share_intent
 
 import android.content.Context
 import android.content.Intent
@@ -25,11 +25,11 @@ import java.io.File
 import java.io.FileOutputStream
 import java.net.URLConnection
 
-private const val MESSAGES_CHANNEL = "receive_sharing_intent/messages"
-private const val EVENTS_CHANNEL_MEDIA = "receive_sharing_intent/events-media"
-private const val EVENTS_CHANNEL_TEXT = "receive_sharing_intent/events-text"
+private const val MESSAGES_CHANNEL = "file_share_intent/messages"
+private const val EVENTS_CHANNEL_MEDIA = "file_share_intent/events-media"
+private const val EVENTS_CHANNEL_TEXT = "file_share_intent/events-text"
 
-class ReceiveSharingIntentPlugin : FlutterPlugin, ActivityAware, MethodCallHandler,
+class FileShareIntentPlugin : FlutterPlugin, ActivityAware, MethodCallHandler,
         EventChannel.StreamHandler, NewIntentListener {
 
     private var initialMedia: JSONArray? = null

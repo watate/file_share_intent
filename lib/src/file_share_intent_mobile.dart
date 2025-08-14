@@ -8,11 +8,11 @@ import '../file_share_intent.dart';
 
 class ReceiveSharingIntentMobile extends ReceiveSharingIntent {
   @visibleForTesting
-  final mChannel = const MethodChannel('receive_sharing_intent/messages');
+  final mChannel = const MethodChannel('file_share_intent/messages');
 
   @visibleForTesting
   final eChannelMedia =
-      const EventChannel("receive_sharing_intent/events-media");
+      const EventChannel("file_share_intent/events-media");
 
   static Stream<List<SharedMediaFile>>? _streamMedia;
 

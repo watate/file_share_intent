@@ -28,7 +28,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.kasem.receive_sharing_intent_example"
+    namespace "com.walter.file_share_intent_example"
     compileSdk 35
 
     compileOptions {
@@ -50,7 +50,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.kasem.receive_sharing_intent_example"
+        applicationId "com.walter.file_share_intent_example"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion

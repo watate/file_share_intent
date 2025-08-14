@@ -3,14 +3,14 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'file_share_intent'
-  s.version          = '1.9.2'
+  s.version          = '2.0.1'
   s.summary          = 'A flutter plugin that enables flutter apps to receive sharing photos from other apps.'
   s.description      = <<-DESC
 A flutter plugin that enables flutter apps to receive sharing photos from other apps.
                        DESC
-  s.homepage         = 'https://kasem.dev'
+  s.homepage         = 'https://waltertay.com'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Kasem' => 'kasem.jaffer@gmail.com' }
+  s.author           = { 'Walter' => 'walter@bookslice.app' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'

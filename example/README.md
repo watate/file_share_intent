@@ -1,6 +1,6 @@
-# receive_sharing_intent_example
+# file_share_intent_example
 
-Demonstrates how to use the receive_sharing_intent plugin.
+Demonstrates how to use the file_share_intent plugin.
 
 ![Alt Text](./demo.gif)
 
