@@ -1,3 +1,6 @@
+## 2.0.3
+- Fixed formatting
+
 ## 2.0.2
 - Fixed Android plugin class not found error by reorganizing package structure
 - Moved Android plugin files from `com.kasem.receive_sharing_intent` to `com.walter.file_share_intent`

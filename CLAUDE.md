@@ -69,11 +69,11 @@ cd example && flutter build ios
 
 **Mobile Implementation (`lib/src/file_share_intent_mobile.dart`)**
 - `ReceiveSharingIntentMobile` - concrete implementation using method/event channels
-- Method channel: `receive_sharing_intent/messages`
-- Event channel: `receive_sharing_intent/events-media`
+- Method channel: `file_share_intent/messages`
+- Event channel: `file_share_intent/events-media`
 - JSON-based data serialization for cross-platform communication
 
-**Android Implementation (`android/src/main/kotlin/.../ReceiveSharingIntentPlugin.kt`)**
+**Android Implementation (`android/src/main/kotlin/.../FileShareIntentPlugin.kt`)**
 - Handles Android Intents: `ACTION_SEND`, `ACTION_SEND_MULTIPLE`, `ACTION_VIEW`
 - File system integration using `FileDirectory.getAbsolutePath()`
 - Video metadata extraction with `MediaMetadataRetriever`

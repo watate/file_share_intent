@@ -11,8 +11,7 @@ class ReceiveSharingIntentMobile extends ReceiveSharingIntent {
   final mChannel = const MethodChannel('file_share_intent/messages');
 
   @visibleForTesting
-  final eChannelMedia =
-      const EventChannel("file_share_intent/events-media");
+  final eChannelMedia = const EventChannel("file_share_intent/events-media");
 
   static Stream<List<SharedMediaFile>>? _streamMedia;
 

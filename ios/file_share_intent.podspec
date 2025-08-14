@@ -3,7 +3,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'file_share_intent'
-  s.version          = '2.0.1'
+  s.version          = '2.0.3'
   s.summary          = 'A flutter plugin that enables flutter apps to receive sharing photos from other apps.'
   s.description      = <<-DESC
 A flutter plugin that enables flutter apps to receive sharing photos from other apps.
