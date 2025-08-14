@@ -1,7 +1,7 @@
 # file_share_intent
 [![pub package](https://img.shields.io/pub/v/file_share_intent.svg)](https://pub.dev/packages/file_share_intent)
 
-A Flutter plugin that enables flutter apps to receive sharing photos, videos, text, urls or any other file types from another app.
+Flutter plugin that implements Android Intent and iOS Share Extension to receive shared content including media files, documents, text, and URLs from external applications.
 
 Also, supports iOS Share extension and launching the host app automatically.
 Check the provided [example](./example/lib/main.dart) for more info.
