@@ -1,3 +1,22 @@
+## 3.0.0
+
+### Breaking Changes
+* **iOS**: Removed Photos framework dependency completely
+  - Eliminates `NSPhotoLibraryUsageDescription` requirement
+  - Photo library asset identifiers no longer supported
+  - Photos and videos shared as file:// URLs work normally
+  - Affects only apps relying on direct photo library identifier resolution
+
+### Improvements
+* **Privacy**: No photo library permission required on iOS
+* **Simplified Setup**: One less privacy permission to configure
+* **Cleaner Build**: Reduced binary size without Photos framework
+
+### Migration Guide
+* Remove `NSPhotoLibraryUsageDescription` from your Info.plist
+* No code changes required if you're handling shared photos/videos
+* Photo library identifiers (PHAsset) will return null instead of file path
+
 ## 2.0.4
 - Fix naming issues
 

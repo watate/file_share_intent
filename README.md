@@ -6,6 +6,8 @@ Flutter plugin that implements Android Intent and iOS Share Extension to receive
 Also, supports iOS Share extension and launching the host app automatically.
 Check the provided [example](./example/lib/main.dart) for more info.
 
+> **Note**: This plugin does not require the `NSPhotoLibraryUsageDescription` permission on iOS. Photos and videos are shared as file URLs, not photo library identifiers.
+
 This is a fork of the original [receive_sharing_intent](https://pub.dev/packages/receive_sharing_intent) and [listen_sharing_intent](https://github.com/Zverik/receive_sharing_intent) plugin.
 
 Main differences:
@@ -26,6 +28,10 @@ To use this plugin, add `file_share_intent` as a [dependency in your pubspec.yam
 dependencies:
   file_share_intent: ^latest
 ```
+
+## Limitations
+
+- **iOS**: Photo library asset identifiers are not supported. When photos are shared from the Photos app or other apps, they are provided as file URLs which work without requiring photo library access. This removes the need for `NSPhotoLibraryUsageDescription` in your Info.plist.
 
 ## Android
 
@@ -196,9 +202,6 @@ Make sure the deployment target for Runner.app and the share extension is the sa
 			</array>
 		</dict>
 	</array>
-
-<key>NSPhotoLibraryUsageDescription</key>
-<string>To upload photos, please allow permission to access your photo library.</string>
 ...
 ```
 

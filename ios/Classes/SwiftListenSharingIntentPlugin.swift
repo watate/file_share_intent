@@ -1,6 +1,5 @@
 import Flutter
 import UIKit
-import Photos
 
 public let kSchemePrefix = "ShareMedia"
 public let kUserDefaultsKey = "ShareKey"
@@ -161,30 +160,9 @@ public class SwiftListenSharingIntentPlugin: NSObject, FlutterPlugin, FlutterStr
             return identifier.replacingOccurrences(of: "file://", with: "")
         }
         
-        guard let phAsset = PHAsset.fetchAssets(
-            withLocalIdentifiers: [identifier],
-            options: .none).firstObject else {
-            return nil
-        }
-        
-        let (url, _) = getFullSizeImageURLAndOrientation(for: phAsset)
-        return url
-        
-    }
-    
-    private func getFullSizeImageURLAndOrientation(for asset: PHAsset)-> (String?, Int) {
-        var url: String? = nil
-        var orientation: Int = 0
-        let semaphore = DispatchSemaphore(value: 0)
-        let options2 = PHContentEditingInputRequestOptions()
-        options2.isNetworkAccessAllowed = true
-        asset.requestContentEditingInput(with: options2){(input, info) in
-            orientation = Int(input?.fullSizeImageOrientation ?? 0)
-            url = input?.fullSizeImageURL?.path
-            semaphore.signal()
-        }
-        semaphore.wait()
-        return (url, orientation)
+        // Photo library identifiers are no longer supported to avoid NSPhotoLibraryUsageDescription requirement
+        // Only file URLs are handled
+        return nil
     }
     
     private func decode(data: Data) -> [SharedMediaFile] {

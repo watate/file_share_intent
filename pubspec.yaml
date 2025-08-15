@@ -1,6 +1,6 @@
 name: file_share_intent
 description: Implements Android Intent and iOS Share Extension to receive shared content.
-version: 2.0.4
+version: 3.0.0
 homepage: https://github.com/watate/file_share_intent
 
 environment:
