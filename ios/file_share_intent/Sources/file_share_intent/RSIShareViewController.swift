@@ -6,7 +6,6 @@
 
 import AVFoundation
 import MobileCoreServices
-import Photos
 import Social
 import UIKit
 

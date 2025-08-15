@@ -197,3 +197,4 @@ class ShareViewController: RSIShareViewController {
 - Android: Gradle 8.4.1, Android Gradle Plugin
 - iOS: CocoaPods integration, Xcode project configuration
 - Plugin platforms defined in `pubspec.yaml` under `flutter.plugin`
+- Do not support Photos framework
