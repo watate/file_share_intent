@@ -13,13 +13,13 @@ void main() {
     ];
     final streamController =
         StreamController<List<SharedMediaFile>>.broadcast();
-    ReceiveSharingIntent.setMockValues(
+    FileShareIntent.setMockValues(
       initialMedia: expectedMediaFiles,
       mediaStream: streamController.stream,
     );
 
     // Test getInitialMedia
-    final mediaFiles = await ReceiveSharingIntent.instance.getInitialMedia();
+    final mediaFiles = await FileShareIntent.instance.getInitialMedia();
     expect(mediaFiles.length, expectedMediaFiles.length);
     for (int i = 0; i < mediaFiles.length; i++) {
       expect(mediaFiles[i].path, expectedMediaFiles[i].path);
@@ -30,7 +30,7 @@ void main() {
     // Test getMediaStream
     final emittedMediaFiles = <List<SharedMediaFile>>[];
     final subscription =
-        ReceiveSharingIntent.instance.getMediaStream().listen((event) {
+        FileShareIntent.instance.getMediaStream().listen((event) {
       emittedMediaFiles.add(event);
     });
 
@@ -53,8 +53,8 @@ void main() {
     // END of getMediaStream test
 
     // Test reset
-    await ReceiveSharingIntent.instance.reset();
-    final initialMedia = await ReceiveSharingIntent.instance.getInitialMedia();
+    await FileShareIntent.instance.reset();
+    final initialMedia = await FileShareIntent.instance.getInitialMedia();
     expect(initialMedia.isEmpty, true);
     // END of reset test
   });

@@ -16,8 +16,8 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp());
 
-    // Set mock values for ReceiveSharingIntent
-    ReceiveSharingIntent.setMockValues(
+    // Set mock values for FileShareIntent
+    FileShareIntent.setMockValues(
       initialMedia: [],
       mediaStream: Stream.empty(),
     );

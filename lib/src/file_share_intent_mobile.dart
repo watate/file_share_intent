@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 import '../file_share_intent.dart';
 
-class ReceiveSharingIntentMobile extends ReceiveSharingIntent {
+class FileShareIntentMobile extends FileShareIntent {
   @visibleForTesting
   final mChannel = const MethodChannel('file_share_intent/messages');
 

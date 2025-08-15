@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
 
     // Listen to media sharing coming from outside the app while the app is in the memory.
-    _intentSub = ReceiveSharingIntent.instance.getMediaStream().listen((value) {
+    _intentSub = FileShareIntent.instance.getMediaStream().listen((value) {
       setState(() {
         _sharedFiles.clear();
         _sharedFiles.addAll(value);
@@ -31,14 +31,14 @@ class _MyAppState extends State<MyApp> {
     });
 
     // Get the media sharing coming from outside the app while the app is closed.
-    ReceiveSharingIntent.instance.getInitialMedia().then((value) {
+    FileShareIntent.instance.getInitialMedia().then((value) {
       setState(() {
         _sharedFiles.clear();
         _sharedFiles.addAll(value);
         print(_sharedFiles.map((f) => f.toMap()));
 
         // Tell the library that we are done processing the intent.
-        ReceiveSharingIntent.instance.reset();
+        FileShareIntent.instance.reset();
       });
     });
   }

@@ -9,20 +9,20 @@ import 'src/file_share_intent_mobile.dart';
 
 part 'src/data/shared_media_file.dart';
 
-abstract class ReceiveSharingIntent extends PlatformInterface {
-  ReceiveSharingIntent() : super(token: _token);
+abstract class FileShareIntent extends PlatformInterface {
+  FileShareIntent() : super(token: _token);
 
   static final Object _token = Object();
 
-  static ReceiveSharingIntent _instance = ReceiveSharingIntentMobile();
+  static FileShareIntent _instance = FileShareIntentMobile();
 
-  /// The default instance of [ReceiveSharingIntent] to use.
-  static ReceiveSharingIntent get instance => _instance;
+  /// The default instance of [FileShareIntent] to use.
+  static FileShareIntent get instance => _instance;
 
   /// Platform-specific implementations should set this to their own
   /// platform-specific class that extends [SamplePluginPlatform] when they
   /// register themselves.
-  static set instance(ReceiveSharingIntent instance) {
+  static set instance(FileShareIntent instance) {
     PlatformInterface.verify(instance, _token);
     _instance = instance;
   }
@@ -70,19 +70,19 @@ abstract class ReceiveSharingIntent extends PlatformInterface {
     required List<SharedMediaFile> initialMedia,
     required Stream<List<SharedMediaFile>> mediaStream,
   }) {
-    ReceiveSharingIntent.instance = _ReceiveSharingIntentMock(
+    FileShareIntent.instance = _FileShareIntentMock(
       initialMedia: List.from(initialMedia),
       mediaStream: mediaStream,
     );
   }
 }
 
-/// A mock implementation of [ReceiveSharingIntent] for testing.
-class _ReceiveSharingIntentMock extends ReceiveSharingIntent {
+/// A mock implementation of [FileShareIntent] for testing.
+class _FileShareIntentMock extends FileShareIntent {
   final List<SharedMediaFile> initialMedia;
   final Stream<List<SharedMediaFile>> mediaStream;
 
-  _ReceiveSharingIntentMock({
+  _FileShareIntentMock({
     required this.initialMedia,
     required this.mediaStream,
   });

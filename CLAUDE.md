@@ -63,12 +63,12 @@ cd example && flutter build ios
 ### Core Components
 
 **Platform Interface (`lib/file_share_intent.dart`)**
-- Abstract `ReceiveSharingIntent` class defining the plugin contract
+- Abstract `FileShareIntent` class defining the plugin contract
 - `SharedMediaFile` data model with support for various media types
-- Mock implementation for testing: `_ReceiveSharingIntentMock`
+- Mock implementation for testing: `_FileShareIntentMock`
 
 **Mobile Implementation (`lib/src/file_share_intent_mobile.dart`)**
-- `ReceiveSharingIntentMobile` - concrete implementation using method/event channels
+- `FileShareIntentMobile` - concrete implementation using method/event channels
 - Method channel: `file_share_intent/messages`
 - Event channel: `file_share_intent/events-media`
 - JSON-based data serialization for cross-platform communication
@@ -121,7 +121,7 @@ cd example && flutter build ios
 ## Plugin Development Notes
 
 ### Testing
-- Mock implementation available via `ReceiveSharingIntent.setMockValues()`
+- Mock implementation available via `FileShareIntent.setMockValues()`
 - Unit tests in `test/` directory
 - Example app demonstrates all functionality
 

@@ -8,7 +8,7 @@ import 'package:file_share_intent/src/file_share_intent_mobile.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  late final instance = ReceiveSharingIntentMobile();
+  late final instance = FileShareIntentMobile();
   late final methodChannel = instance.mChannel;
   late final eventChannel = instance.eChannelMedia;
 
