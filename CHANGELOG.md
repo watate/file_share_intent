@@ -1,3 +1,7 @@
+## 3.0.1
+- Fix compilation issues
+- Add Swift compilation test
+
 ## 3.0.0
 
 ### Breaking Changes
