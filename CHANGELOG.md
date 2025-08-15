@@ -1,3 +1,6 @@
+## 2.0.4
+- Fix naming issues
+
 ## 2.0.3
 - Fixed formatting
 
